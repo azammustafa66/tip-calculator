@@ -6,6 +6,7 @@ const billPerPerson = document.getElementById("total-bill-per-person");
 const errorMsg = document.getElementById("error-msg");
 let clickedButton = null;
 const customButton = document.getElementById("custom-btn");
+const resetButton = document.getElementById("reset-btn");
 
 tipButtons.forEach((button) => {
   handleButtonClick(button);
@@ -75,4 +76,26 @@ function handleButtonClick(button) {
 
     calculateTip();
   });
+}
+
+function resetState() {
+  billAmountInput.value = "";
+
+  if (clickedButton) {
+    clickedButton.style.backgroundColor = "";
+    clickedButton.style.color = "";
+    clickedButton = null;
+  }
+
+  const customInput = document.querySelector(".custom-input");
+  if (customInput) {
+    customInput.parentNode.replaceChild(customButton, customInput);
+  }
+
+  numberOfPeopleInput.value = "";
+  numberOfPeopleInput.classList.remove("border-[#E17457]");
+  errorMsg.classList.add("invisible");
+
+  tipAmount.textContent = "$0.00";
+  billPerPerson.textContent = "$0.00";
 }
